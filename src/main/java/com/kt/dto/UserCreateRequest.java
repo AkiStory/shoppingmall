@@ -11,6 +11,6 @@ public record UserCreateRequest(
 	String email,
 	String mobile,
 	Gender gender,
-	LocalDate birthday;
+	LocalDate birthday
 ) {
 }
