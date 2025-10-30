@@ -14,9 +14,15 @@ public class UserRepository {
 
 	public void save(User user) {
 		// 서비스에서 dto를 도메인(비지니스모델)으로 바꾼다음 전달
-		var sql = "INSERT INTO MEMBER (loginId, password, name, birthday) VALUES (?, ?, ?, ?)";
+		var sql = """
+			INSERT INTO MEMBER (id, loginId, password, name, mobile, email,
+			                    gender, birthday, createdAt, updatedAt)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		""";
 
-		jdbcTemplate.update(sql, user.getLoginId(), user.getPassword(), user.getName(), user.getBirthday());
+		jdbcTemplate.update(sql, user.getId(), user.getLoginId(), user.getPassword(),
+			user.getName(), user.getMobile(), user.getEmail(), user.getGender().name(),
+			user.getBirthday(), user.getCreatedAt(), user.getUpdatedAt());
 	}
 
 	public Long selectMaxId(){
