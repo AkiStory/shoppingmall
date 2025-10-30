@@ -18,4 +18,11 @@ public class UserRepository {
 
 		jdbcTemplate.update(sql, user.getLoginId(), user.getPassword(), user.getName(), user.getBirthday());
 	}
+
+	public Long selectMaxId(){
+		var sql = "SELECT MAX(id) FROM MEMBER";
+
+		var maxId = jdbcTemplate.queryForObject(sql, Integer.class);
+		return maxId == null ? 0L : maxId;
+	}
 }
